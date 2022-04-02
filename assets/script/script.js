@@ -13,6 +13,7 @@
 
 /*Define variables*/
     //Assignment Code to each section
+var startBtn = document.querySelector("#start_button");
     //Define questions (Object)
 var questions = [
     {
@@ -73,16 +74,18 @@ function countdown() {
 
             clearInterval(timerInterval);
 
-            sendMessage();
+            timeLeft.textContent = "Time is up!"; 
             }
     }, 1000);
 }
-function sendMessage() {
-    timeLeft.textContent = "Time is up!";  
-}
 
-countdown();
+
+
     //Presented with a question and answers
+
+
+
+
     //WHEN I answer a question,Show if answer is correct or wrong 
     //THEN I am presented with another question
     //WHEN all questions are answered or the timer reaches 0, Game is over
@@ -91,4 +94,5 @@ countdown();
     //Show highscores
 
 /* Add event listeners*/
+startBtn.addEventListener("click", startQuiz);
 
