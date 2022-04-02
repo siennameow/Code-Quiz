@@ -24,11 +24,23 @@ main {
     padding-left:300px;
     padding-right:300px;
 }
-
+.question_page {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 /*hide the bullet points from listings*/
 ul {
     list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: baseline; 
    }
+li {
+    margin-bottom: 10px;
+}
 
 /*display only the intro page and hide the rest sections*/
 .question_page, .submit_page, .highscore_page {

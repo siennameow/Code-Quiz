@@ -13,9 +13,18 @@
 
 /*Define variables*/
     //Assignment Code to each section
+var introPage = document.querySelector("#introduction");
 var startBtn = document.querySelector("#start_button");
+
+var questionPage = document.querySelector("#question_page");
+var askQuestion = document.querySelector("#ask_question");
+
+var answerBtn1 = document.querySelector("#answer_btn1");
+var answerBtn2 = document.querySelector("#answer_btn2");
+var answerBtn3 = document.querySelector("#answer_btn3");
+var answerBtn4 = document.querySelector("#answer_btn4");
     //Define questions (Object)
-var questions = [
+var questionSource = [
     {
         question: "String values must be enclosed within _____ when being assigned to variables.",
         choices: ["a. commas", "b. curly brackets", "c. quotes", "d. parenthesis"],
@@ -58,9 +67,11 @@ var questions = [
     }
 ];
     //Set other variables
+
 var timeLeft = document.getElementById("timer");
 
 var secondsLeft = 100;
+// var questionCount = 0;
 /*Functions*/
     //WHEN I click the start button, THEN a timer starts(The setInterval() Method)
 function countdown() {
@@ -82,10 +93,30 @@ function countdown() {
 
 
     //Presented with a question and answers
+function startQuiz () {
+        introPage.style.display = "none";
+        questionPage.style.display = "block";
+        questionCount = 0;
+        countdown();
+        showQuestion(questionCount);
+      
+}
 
+function showQuestion (num) {
+    if (num < questionSource.length) {
+        askQuestion.textContent = questionSource[num].question;
+        answerBtn1.textContent = questionSource[num].choices[0];
+        console.log(answerBtn1);
+        answerBtn2.textContent = questionSource[num].choices[1];
+        answerBtn3.textContent = questionSource[num].choices[2];
+        answerBtn4.textContent = questionSource[num].choices[3];
+    }
 
-
-
+    // questionPage.style.display = "block";
+    // answerBtn1.style.display = "block";
+    // questionPage.style.display = "block";
+    // questionPage.style.display = "block";
+}
     //WHEN I answer a question,Show if answer is correct or wrong 
     //THEN I am presented with another question
     //WHEN all questions are answered or the timer reaches 0, Game is over
@@ -95,4 +126,5 @@ function countdown() {
 
 /* Add event listeners*/
 startBtn.addEventListener("click", startQuiz);
+// startBtn.addEventListener("click", showQuestion(0));
 
