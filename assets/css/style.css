@@ -1,0 +1,29 @@
+* {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+
+.header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    background: linear-gradient(0deg, rgb(145, 102, 202) 0%, rgba(237,245,249,1) 63%);
+  }
+
+main {
+    text-align: center;
+    justify-content: center;
+    flex: 1 0 auto;
+}
+
+ul {
+    list-style-type: none;
+   }
+
