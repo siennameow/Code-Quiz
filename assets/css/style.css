@@ -23,7 +23,12 @@ main {
     flex: 1 0 auto;
 }
 
+/*hide the bullet points from listings*/
 ul {
     list-style-type: none;
    }
 
+/*display only the intro page and hide the rest sections*/
+.question_page, .submit_page, .highscore_page {
+    display:none;
+}
