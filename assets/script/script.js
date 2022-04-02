@@ -15,9 +15,31 @@
     //Assignment Code to each section
     //Define questions (Object)
     //Set other variables
+var timeLeft = document.getElementById("timer");
 
+var secondsLeft = 100;
 /*Functions*/
     //WHEN I click the start button, THEN a timer starts(The setInterval() Method)
+function countdown() {
+        
+        var timerInterval = setInterval(function () {
+
+          secondsLeft--;
+          timeLeft.textContent = "Time left: " + secondsLeft + " s";
+
+            if(secondsLeft === 0) {
+
+            clearInterval(timerInterval);
+
+            sendMessage();
+            }
+    }, 1000);
+}
+function sendMessage() {
+    timeLeft.textContent = "Time is up!";  
+}
+
+countdown();
     //Presented with a question and answers
     //WHEN I answer a question,Show if answer is correct or wrong 
     //THEN I am presented with another question
