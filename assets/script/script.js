@@ -14,6 +14,48 @@
 /*Define variables*/
     //Assignment Code to each section
     //Define questions (Object)
+var questions = [
+    {
+        question: "String values must be enclosed within _____ when being assigned to variables.",
+        choices: ["a. commas", "b. curly brackets", "c. quotes", "d. parenthesis"],
+        answer: "c. quotes"
+    },
+    {
+        question: "Commonly used data types DO NOT include:",
+        choices: ["a. strings", "b. booleans", "c. alerts", "d. numbers"],
+        answer: "c. alerts"
+    },
+    {
+        question: "How do you create a function in JavaScript",
+        choices: ["a. function = myFunction()", "b. function myFunction()", "c. function:myFunction()", "d. createMyFunction()"],
+        answer: "b. function myFunction()"
+    },
+    {
+        question: "How do you call a function named myFunction?",
+        choices: ["a. call myFunction()", "b. call function myFunction()", "c. myFunction()", "d. call myFunction"],
+        answer: "c. myFunctions()"
+    },
+    {
+        question: "To see if two variables are equal in an if / else statement you would use ____.",
+        choices: ["a. =", "b. ==", "c. 'equals'", "d. !="],
+        answer: "b. =="
+    },
+    {
+        question: "The first index of an array is ____.",
+        choices: ["a. 0", "b. 1", "c. 8", "d. any"],
+        answer: "a. 0"
+    },
+    {
+        question: "How to write an IF statement in JavaScript?",
+        choices: ["a. if i == 5 then", "b. if i = 5 then", "c. if(i == 5)", "d. if i = 5"],
+        answer: "c. if(i == 5)"
+    },
+    {
+        question: "Which event occurs when the user clicks on an HTML element?",
+        choices: ["a. onclick", "b. onchange", "c. onmouseover", "d. onmouseclick"],
+        answer: "a. onclick"
+    }
+];
     //Set other variables
 var timeLeft = document.getElementById("timer");
 
@@ -49,3 +91,4 @@ countdown();
     //Show highscores
 
 /* Add event listeners*/
+
