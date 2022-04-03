@@ -28,6 +28,11 @@ var answerBtn4 = document.querySelector("#answer_btn4");
 var checkLine = document.querySelector("#check_line");
 var scoreBoard = document.querySelector("#submit_page");
 var finalScore = document.querySelector("#final_score");
+
+var userInitial =document.querySelector("#initial");
+var submitBtn =document.querySelector("#submit_btn");
+var highScorePage =document.querySelector("#highscore_page");
+
     //Define questions (Object)
 var questionSource = [
     {
@@ -77,8 +82,7 @@ var timeLeft = document.getElementById("timer");
 
 var secondsLeft = 100;
 var questionCount = 0;
-var correctAns = 0;
-var timerInterval;
+var totalScore = 0;
 
 /*Functions*/
     //WHEN I click the start button, THEN a timer starts(The setInterval() Method)
@@ -129,43 +133,47 @@ function checkAnswer(event) {
 
     // answer check
 
-    console.log(questionCount);
+    console.log(totalScore);
+        //THEN I am presented with another question
     if (questionCount < questionSource.length -1 ) {
         questionCount++;
 
     if (questionSource[questionCount].answer == event.target.value) {
-        checkLine.textContent = "Correct!";
+        checkLine.textContent = "Correct!"; 
+        totalScore = totalScore + 1;
     } else if (questionSource[questionCount].answer!== event.target.value) {
         secondsLeft = secondsLeft - 10;
         checkLine.textContent = "Wrong! The correct answer is " + questionSource[questionCount].answer + " .";
     }
+    // call showQuestions to bring in next question when any reactBtn is clicked
     showQuestion(questionCount);
 } else {
     gameOver();
 }
-    // increment so the questionCount is increased
-
-    //THEN I am presented with another question
-// call showQuestions to bring in next question when any reactBtn is clicked
-   
 }
-
     //WHEN all questions are answered or the timer reaches 0, Game is over
-
 function gameOver() {
 
-        scoreBoard.style.display = "block";
         questionPage.style.display = "none";
+        scoreBoard.style.display = "block";
+        console.log(scoreBoard);
         // show final score
-        finalScore.textContent = "Your final score is :" + correctAns ;
+        finalScore.textContent = "Your final score is :" + totalScore ;
         // clearInterval(timerInterval);  
         timeLeft.style.display = "none"; 
-
-
 }
     //Save initials and score
     //Store scores into local storage
     //Show highscores
+function showHighScore () {
+        scoreBoard.style.display = "none";
+        console.log(highScorePage);
+        highScorePage.style.display = "block";
+
+
+
+
+}
 
 /* Add event listeners*/
 startBtn.addEventListener("click", startQuiz);
@@ -174,4 +182,6 @@ reactButtons.forEach(function(click){
 
     click.addEventListener("click", checkAnswer);
 })
+
+submitBtn.addEventListener("click", showHighScore);
 
