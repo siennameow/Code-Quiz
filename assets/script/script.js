@@ -13,8 +13,9 @@
 
 /*Define variables*/
     //Assignment Code to each section
-var introPage = document.querySelector("#introduction");
+var welcome = document.querySelector("#introduction");
 var startBtn = document.querySelector("#start_button");
+var introPage =document.querySelector("#intro_page");
 
 var questionPage = document.querySelector("#question_page");
 var askQuestion = document.querySelector("#ask_question");
@@ -28,11 +29,16 @@ var answerBtn4 = document.querySelector("#answer_btn4");
 var checkLine = document.querySelector("#check_line");
 var scoreBoard = document.querySelector("#submit_page");
 var finalScore = document.querySelector("#final_score");
-
+var userInitial =document.querySelector("#initial");
+console.log(userInitial);
 
 var submitBtn =document.querySelector("#submit_btn");
 var highScorePage =document.querySelector("#highscore_page");
 var scoreRecord =document.querySelector("#score_record");
+var scoreCheck =document.querySelector("#score_check");
+
+var backBtn =document.querySelector("#back_btn");
+var clearBtn=document.querySelector("#clear_btn");
 
     //Define questions (Object)
 var questionSource = [
@@ -133,21 +139,23 @@ function checkAnswer(event) {
     }, 1000);
 
     // answer check
-
-    console.log(totalScore);
+        
         //THEN I am presented with another question
-    if (questionCount < questionSource.length -1 ) {
+    if (questionCount < questionSource.length ) {
         questionCount++;
-
+        console.log(questionCount);
     if (questionSource[questionCount].answer == event.target.value) {
         checkLine.textContent = "Correct!"; 
         totalScore = totalScore + 1;
+
     } else if (questionSource[questionCount].answer!== event.target.value) {
         secondsLeft = secondsLeft - 10;
         checkLine.textContent = "Wrong! The correct answer is " + questionSource[questionCount].answer + " .";
     }
+    console.log(totalScore)
     // call showQuestions to bring in next question when any reactBtn is clicked
     showQuestion(questionCount);
+    
 } else {
     gameOver();
 }
@@ -163,19 +171,47 @@ function gameOver() {
         // clearInterval(timerInterval);  
         timeLeft.style.display = "none"; 
 }
-    //Save initials and score
-    //Store scores into local storage
-    //Show highscores
 
+var highScores = [];
 
-function showHighScore () {
-    var userInitial =document.querySelector("#initial").value;
-        scoreBoard.style.display = "none";
-        highScorePage.style.display = "block";
-console.log(scoreRecord);
-        scoreRecord.textContent = userInitial + " - " + totalScore;
+function renderHighScores() {
+    // Clear content
+    scoreRecord.innerHTML = "";
+    scoreRecord.style.display ="block";
+    highScores = JSON.parse(localStorage.getItem("scoreList"));
+    for (var i = 0; i < highScores.length; i++) {
+        var item = highScores[i];
+
+        var li = document.createElement("li");
+        li.textContent = item;
+        li.setAttribute("data-index", i);
+        scoreRecord.appendChild(li);
+    }
+}
+
+// init
+function init() {
+    var storedScores =JSON.parse(localStorage.getItem("scoreList"));
+    console.log(storedScores);
+    if (storedScores !== null) {
+        highScores = storedScores;
+      }
+    renderHighScores();
+}
+
+// store
+function storeScore () {
+    var scoreList ={
+        user: userInitial.value,
+        score: totalScore
+    }
+    localStorage.setItem("scoreList", JSON.stringify(scoreList));
 
 }
+
+
+//     //Save initials and score
+//     //Store scores into local storage
 
 /* Add event listeners*/
 startBtn.addEventListener("click", startQuiz);
@@ -183,7 +219,44 @@ startBtn.addEventListener("click", startQuiz);
 reactButtons.forEach(function(click){
 
     click.addEventListener("click", checkAnswer);
-})
+});
 
-submitBtn.addEventListener("click", showHighScore);
+submitBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    scoreBoard.style.display = "none";
+    introPage.style.display = "none";
+    highScorePage.style.display = "block";
+    questionPage.style.display ="none";
 
+    var scoreList ={
+        user: userInitial.value,
+        score: totalScore
+    };
+    highScores.push(scoreList);
+    storeScore();
+    renderHighScores();
+});
+
+scoreCheck.addEventListener("click", function(event) {
+    event.preventDefault();
+    scoreBoard.style.display = "none";
+    introPage.style.display = "none";
+    highScorePage.style.display = "block";
+    questionPage.style.display ="none";
+});
+// backBtn.addEventListener("click", body.reload());
+
+backBtn.addEventListener("click",goBack);
+
+function goBack() {
+    scoreBoard.style.display = "none";
+    introPage.style.display = "block";
+    highScorePage.style.display = "none";
+    questionPage.style.display ="none";
+    location.reload();
+}
+// clearBtn.addEventListener("click",function() {
+    
+// });
+
+init();
