@@ -78,6 +78,8 @@ var timeLeft = document.getElementById("timer");
 var secondsLeft = 100;
 var questionCount = 0;
 var correctAns = 0;
+var timerInterval;
+
 /*Functions*/
     //WHEN I click the start button, THEN a timer starts(The setInterval() Method)
 function countdown() {
@@ -92,6 +94,7 @@ function countdown() {
             clearInterval(timerInterval);
 
             timeLeft.textContent = "Time is up!"; 
+
             }
     }, 1000);
 }
@@ -118,43 +121,48 @@ function showQuestion (n) {
     //WHEN I answer a question,Show if answer is correct or wrong 
 function checkAnswer(event) {
     event.preventDefault();
-
-    // show section for yaynay and append message
+    //make it display
     checkLine.style.display = "block";
-    // time out after 1 second
     setTimeout(function () {
         checkLine.style.display = 'none';
     }, 1000);
 
-    // answer checker
-    console.log(questionSource[questionCount].answer);
-    console.log(event.target.value);
+    // answer check
+
+    console.log(questionCount);
+    if (questionCount < questionSource.length -1 ) {
+        questionCount++;
+
     if (questionSource[questionCount].answer == event.target.value) {
         checkLine.textContent = "Correct!";
     } else if (questionSource[questionCount].answer!== event.target.value) {
         secondsLeft = secondsLeft - 10;
-        checkLine.textContent = "Wrong!The correct answer is " + questionSource[questionCount].answer + " .";
+        checkLine.textContent = "Wrong! The correct answer is " + questionSource[questionCount].answer + " .";
     }
-
-    // increment so the questions index is increased
-    if (questionCount < questionSource.length) {
-        questionCount++;
-    }
-    // // call setQuestion to bring in next question when any ansBtn is clicked
     showQuestion(questionCount);
+} else {
+    gameOver();
 }
+    // increment so the questionCount is increased
 
     //THEN I am presented with another question
+// call showQuestions to bring in next question when any reactBtn is clicked
+   
+}
+
     //WHEN all questions are answered or the timer reaches 0, Game is over
 
+function gameOver() {
 
-// function gameOver() {
-//         scoreBoard.style.display = "block";
-//         questionPage.style.display = "none";
+        scoreBoard.style.display = "block";
+        questionPage.style.display = "none";
+        // show final score
+        finalScore.textContent = "Your final score is :" + correctAns ;
+        // clearInterval(timerInterval);  
+        timeLeft.style.display = "none"; 
 
-//         // show final score
-//         finalScore.textContent = correctAns;
-// }
+
+}
     //Save initials and score
     //Store scores into local storage
     //Show highscores
