@@ -39,13 +39,12 @@ ul {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: baseline;
+    padding-left: 50px;
    }
 
 li {
     margin-bottom: 10px;
-    width:max-content;
-    padding-left:5%;
-
 }
 
 /*display only the intro page and hide the rest sections*/
@@ -80,7 +79,7 @@ li {
 @media only screen and (max-width: 520px) {
     body {
       background-image: url("https://r1.ilikewallpaper.net/ipad-wallpapers/download/1517/Vector-Cat-ipad-wallpaper-ilikewallpaper_com.jpg");
-      font-size: 140%;
+      font-size: 130%;
     }
     main {
         margin-left:12px;

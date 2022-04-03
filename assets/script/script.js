@@ -87,10 +87,10 @@ var questionSource = [
 
 var timeLeft = document.getElementById("timer");
 
-var secondsLeft = 60;
-var questionCount = 0;
+var secondsLeft = 30;
+var questionNumber = 0;
 var totalScore = 0;
-
+var questionCount = 1;
 /*Functions*/
     //WHEN I click the start button, THEN a timer starts(The setInterval() Method)
 function countdown() {
@@ -99,17 +99,18 @@ function countdown() {
 
           secondsLeft--;
           timeLeft.textContent = "Time left: " + secondsLeft + " s";
+    
+            if (secondsLeft <= 0){
+                clearInterval(timerInterval);
+                timeLeft.textContent = "Time is up!"; 
+                // if time is up, show on score board content instead of "all done!"
+                finish.textContent = "Time is up!";
+                gameOver();
 
-            if(secondsLeft <= 0) {
-
-            clearInterval(timerInterval);
-
-            timeLeft.textContent = "Time is up!"; 
-            // if time is up, show on score board content instead of "all done!"
-            finish.textContent = "Time is up!";
-            gameOver();
-
-            }
+            } else  if(questionCount >= questionSource.length +1) {
+                clearInterval(timerInterval);
+                gameOver();
+                } 
     }, 1000);
 }
 
@@ -117,9 +118,9 @@ function countdown() {
 function startQuiz () {
         introPage.style.display = "none";
         questionPage.style.display = "block";
-        questionCount = 0
+        questionNumber = 0
         countdown();
-        showQuestion(questionCount);
+        showQuestion(questionNumber);
       
 }
     //present the questions and answers
@@ -129,7 +130,7 @@ function showQuestion (n) {
         answerBtn2.textContent = questionSource[n].choices[1];
         answerBtn3.textContent = questionSource[n].choices[2];
         answerBtn4.textContent = questionSource[n].choices[3];
-        questionCount = n;
+        questionNumber = n;
     }
 
     //WHEN I answer a question,Show if answer is correct or wrong 
@@ -142,21 +143,22 @@ function checkAnswer(event) {
     }, 1000);
 
     // answer check
-    if (questionSource[questionCount].answer == event.target.value) {
+    if (questionSource[questionNumber].answer == event.target.value) {
         checkLine.textContent = "Correct!"; 
         totalScore = totalScore + 1;
 
     } else {
         secondsLeft = secondsLeft - 10;
-        checkLine.textContent = "Wrong! The correct answer is " + questionSource[questionCount].answer + " .";
+        checkLine.textContent = "Wrong! The correct answer is " + questionSource[questionNumber].answer + " .";
     }
          //THEN I am presented with another question
-    if (questionCount < questionSource.length -1 ) {
+    if (questionNumber < questionSource.length -1 ) {
     // call showQuestions to bring in next question when any reactBtn is clicked
-        showQuestion(questionCount +1);
+        showQuestion(questionNumber +1);
     } else {
     gameOver();
 }
+questionCount++;
 }
     //WHEN all questions are answered or the timer reaches 0, Game is over
 function gameOver() {
