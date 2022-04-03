@@ -172,45 +172,7 @@ function gameOver() {
         timeLeft.style.display = "none"; 
 };
 
-
-//Store scores into local storage
-// var highScores = [];
-
-// function renderHighScores() {
-//     // Clear content
-//     scoreRecord.innerHTML = "";
-//     scoreRecord.style.display ="block";
-//     highScores = JSON.parse(localStorage.getItem("scoreList"));
-//     for (var i = 0; i < highScores.length; i++) {
-//         var item = highScores[i];
-
-//         var li = document.createElement("li");
-//         li.textContent = item;
-//         li.setAttribute("data-index", i);
-//         scoreRecord.appendChild(li);
-//     }
-// }
-
-// init
-// function init() {
-//     var storedScores =JSON.parse(localStorage.getItem("scoreList"));
-//     console.log(storedScores);
-//     if (storedScores !== null) {
-//         highScores = storedScores;
-//       }
-//     renderHighScores();
-// }
-
-// store
-// function storeScore () {
-//     var scoreList ={
-//         user: userInitial.value,
-//         score: totalScore
-//     }
-//     localStorage.setItem("scoreList", JSON.stringify(scoreList));
-
-// }
-
+// get current score and initials from local storage
 function getScore () {
     var currentList =localStorage.getItem("ScoreList");
     if (currentList !== null ){
@@ -222,17 +184,12 @@ function getScore () {
     return freshList;
 };
 
-function addItem (n) {
-    var addedList = getScore();
-    addedList.push(n);
-    localStorage.setItem("ScoreList", JSON.stringify(addedList));
-};
 
-
+// render score to the score board
 function renderScore () {
     scoreRecord.innerHTML = "";
     scoreRecord.style.display ="block";
-    var highScores = getScore();
+    var highScores = sort();
     for (var i = 0; i < highScores.length; i++) {
         var item = highScores[i];
     
@@ -243,65 +200,55 @@ function renderScore () {
     }
 };
 
+// sort score and ranking the highscore list
+function sort () {
+    var unsortedList = getScore();
+    if (getScore == null ){
+        return;
+    } else{
+    unsortedList.sort(function(a,b){
+        return b.score - a.score;
+    })
+    return unsortedList;
+}};
+
+// push new score and initial to the local storage
+function addItem (n) {
+    var addedList = getScore();
+    addedList.push(n);
+    localStorage.setItem("ScoreList", JSON.stringify(addedList));
+};
+
 function saveScore () {
     var scoreItem ={
         user: userInitial.value,
         score: totalScore
     }
-
     addItem(scoreItem);
     renderScore();
-
 }
 
-
-//go back to intro page
-function goBack() {
-    scoreBoard.style.display = "none";
-    introPage.style.display = "block";
-    highScorePage.style.display = "none";
-    questionPage.style.display ="none";
-    location.reload();
-};
-
-
 /* Add event listeners*/
+// startbtn to start the quiz
 startBtn.addEventListener("click", startQuiz);
 
+//click any choices button, go to the next question
 reactButtons.forEach(function(click){
 
     click.addEventListener("click", checkAnswer);
 });
 
-
+//save information and go to next page
 submitBtn.addEventListener("click", function(event) {
+    event.preventDefault();
     scoreBoard.style.display = "none";
     introPage.style.display = "none";
     highScorePage.style.display = "block";
     questionPage.style.display ="none";
-    event.preventDefault();
     saveScore();
-
 });
 
-// submitBtn.addEventListener("click", function(event) {
-//     event.preventDefault();
-//     scoreBoard.style.display = "none";
-//     introPage.style.display = "none";
-//     highScorePage.style.display = "block";
-//     questionPage.style.display ="none";
-
-//     var scoreList = {
-//         user: userInitial.value,
-//         score: totalScore
-//     };
-//     console.log(highScores[0]);
-//     highScores.push('scoreList');
-//     console.log(highScores);
-//     storeScore();
-//     renderHighScores();
-// });
-
+// check highscore ranking list
 scoreCheck.addEventListener("click", function(event) {
     event.preventDefault();
     scoreBoard.style.display = "none";
@@ -310,14 +257,21 @@ scoreCheck.addEventListener("click", function(event) {
     questionPage.style.display ="none";
     renderScore();
 });
-// backBtn.addEventListener("click", body.reload());
 
-backBtn.addEventListener("click",goBack);
-
-clearBtn.addEventListener("click",function(event) {
-    event.preventDefault();
-    highScore = [];
-    
+//go back to main page
+backBtn.addEventListener("click",function(event){
+        event.preventDefault();
+        scoreBoard.style.display = "none";
+        introPage.style.display = "block";
+        highScorePage.style.display = "none";
+        questionPage.style.display ="none";
+        location.reload();
 });
 
-// init();
+//clear local storage and clear page shows
+clearBtn.addEventListener("click",function(event) {
+    event.preventDefault();
+    localStorage.clear();
+    renderScore();
+});
+
