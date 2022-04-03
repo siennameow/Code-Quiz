@@ -87,7 +87,7 @@ var questionSource = [
 
 var timeLeft = document.getElementById("timer");
 
-var secondsLeft = 30;
+var secondsLeft = 60;
 var questionNumber = 0;
 var totalScore = 0;
 var questionCount = 1;
