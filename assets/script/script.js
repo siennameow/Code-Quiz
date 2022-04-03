@@ -30,12 +30,12 @@ var checkLine = document.querySelector("#check_line");
 var scoreBoard = document.querySelector("#submit_page");
 var finalScore = document.querySelector("#final_score");
 var userInitial =document.querySelector("#initial");
-console.log(userInitial);
 
 var submitBtn =document.querySelector("#submit_btn");
 var highScorePage =document.querySelector("#highscore_page");
 var scoreRecord =document.querySelector("#score_record");
 var scoreCheck =document.querySelector("#score_check");
+var finish =document.querySelector("#finish");
 
 var backBtn =document.querySelector("#back_btn");
 var clearBtn=document.querySelector("#clear_btn");
@@ -87,7 +87,7 @@ var questionSource = [
 
 var timeLeft = document.getElementById("timer");
 
-var secondsLeft = 100;
+var secondsLeft = 60;
 var questionCount = 0;
 var totalScore = 0;
 
@@ -100,11 +100,14 @@ function countdown() {
           secondsLeft--;
           timeLeft.textContent = "Time left: " + secondsLeft + " s";
 
-            if(secondsLeft === 0) {
+            if(secondsLeft <= 0) {
 
             clearInterval(timerInterval);
 
             timeLeft.textContent = "Time is up!"; 
+            // if time is up, show on score board content instead of "all done!"
+            finish.textContent = "Time is up!";
+            gameOver();
 
             }
     }, 1000);
@@ -139,24 +142,19 @@ function checkAnswer(event) {
     }, 1000);
 
     // answer check
-        
-        //THEN I am presented with another question
-    if (questionCount < questionSource.length ) {
-        questionCount++;
-        console.log(questionCount);
     if (questionSource[questionCount].answer == event.target.value) {
         checkLine.textContent = "Correct!"; 
         totalScore = totalScore + 1;
 
-    } else if (questionSource[questionCount].answer!== event.target.value) {
+    } else {
         secondsLeft = secondsLeft - 10;
         checkLine.textContent = "Wrong! The correct answer is " + questionSource[questionCount].answer + " .";
     }
-    console.log(totalScore)
+         //THEN I am presented with another question
+    if (questionCount < questionSource.length -1 ) {
     // call showQuestions to bring in next question when any reactBtn is clicked
-    showQuestion(questionCount);
-    
-} else {
+        showQuestion(questionCount +1);
+    } else {
     gameOver();
 }
 }
