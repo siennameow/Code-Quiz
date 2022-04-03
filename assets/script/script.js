@@ -187,10 +187,12 @@ function getScore () {
 function renderScore () {
     scoreRecord.innerHTML = "";
     scoreRecord.style.display ="block";
-    var highScores = sort();
-    for (var i = 0; i < highScores.length; i++) {
-        var item = highScores[i];
-    
+    var highScores = sort();   
+    // Slice the high score array to only show the top five high scores. 
+    var topFive = highScores.slice(0,5);
+    for (var i = 0; i < topFive.length; i++) {
+        var item = topFive[i];
+    // Show the score list on score board
     var li = document.createElement("li");
     li.textContent = item.user + " - " + item.score;
     li.setAttribute("data-index", i);
