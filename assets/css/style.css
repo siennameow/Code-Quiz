@@ -14,15 +14,18 @@ body {
     flex-direction: column;
     min-height: 100vh;
     justify-content: center;
-    background: linear-gradient(0deg, rgb(145, 102, 202) 0%, rgba(237,245,249,1) 63%);
+    background-image: url("https://i.imgur.com/QGLSsrx.gif");
+    background-repeat: no-repeat;
+    background-position:center; 
+    background-size: cover;
   }
 
 main {
     text-align: center;
     justify-content: center;
     flex: 1 0 auto;
-    padding-left:300px;
-    padding-right:300px;
+    margin-left:200px;
+    margin-right:200px;
 }
 .question_page {
     display:flex;
@@ -47,3 +50,37 @@ li {
     display:none;
 }
 
+.button{
+    background:white;
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+.button:hover{
+  
+    background-color:rgb(205, 245, 247);
+  
+}
+  
+@media only screen and (max-width: 960px) {
+    body {
+      background-image: url("https://i.imgur.com/olFXHcr.gif");
+    }
+    main {
+        margin-left:50px;
+        margin-right:50px;
+    }
+  }
+
+@media only screen and (max-width: 520px) {
+    body {
+      background-image: url("https://r1.ilikewallpaper.net/ipad-wallpapers/download/1517/Vector-Cat-ipad-wallpaper-ilikewallpaper_com.jpg");
+      font-size: 150%;
+    }
+    main {
+        margin-left:12px;
+        margin-right:12px;
+    }
+}
