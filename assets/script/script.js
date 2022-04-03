@@ -29,9 +29,10 @@ var checkLine = document.querySelector("#check_line");
 var scoreBoard = document.querySelector("#submit_page");
 var finalScore = document.querySelector("#final_score");
 
-var userInitial =document.querySelector("#initial");
+
 var submitBtn =document.querySelector("#submit_btn");
 var highScorePage =document.querySelector("#highscore_page");
+var scoreRecord =document.querySelector("#score_record");
 
     //Define questions (Object)
 var questionSource = [
@@ -165,13 +166,14 @@ function gameOver() {
     //Save initials and score
     //Store scores into local storage
     //Show highscores
+
+
 function showHighScore () {
+    var userInitial =document.querySelector("#initial").value;
         scoreBoard.style.display = "none";
-        console.log(highScorePage);
         highScorePage.style.display = "block";
-
-
-
+console.log(scoreRecord);
+        scoreRecord.textContent = userInitial + " - " + totalScore;
 
 }
 
