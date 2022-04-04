@@ -6,7 +6,7 @@ JavaScript is a powerful language that makes everything possible. The beauty of 
 
 This JavaScript Code Quiz challenge has 8 questions total and they’re all multiple choice. Upon completion, you will receive a score. By submitting your inital, your score will be added to a Highscore record. The Highscore board allows you to track your personal scores and display the top 5 scores yo have.
 
-The webpage is easy for you to access through one link : https://siennameow.github.io/Password-Generator/ and is designed to work with different screen sizes as you need.
+The webpage is easy for you to access through one link : https://siennameow.github.io/Code-Quiz/ and is designed to work with different screen sizes as you need.
 
 Want to test your knowledge of JavaScript? Give our free coding quiz a try! 
 
@@ -24,6 +24,7 @@ Want to test your knowledge of JavaScript? Give our free coding quiz a try!
 ## Webpage Preview ⭐
  
 
+![Code Quiz](https://user-images.githubusercontent.com/101283174/161477101-64e471f3-7c7b-4787-93e8-2309be76cbe8.gif)
 
 
 ## Custom Features 📋
@@ -104,7 +105,7 @@ function checkAnswer(event) {
 
 ## Usage 💡
 
-The link of the webpage is: 
+The link of the webpage is: https://siennameow.github.io/Code-Quiz/
 
 - Step 1: Load the webpage.
 - Step 2 :Click the "start" button to start the quiz and the timer.
