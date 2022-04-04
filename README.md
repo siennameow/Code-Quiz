@@ -23,8 +23,8 @@ Want to test your knowledge of JavaScript? Give our free coding quiz a try!
 
 ## Webpage Preview ⭐
  
-
-![Code Quiz](https://user-images.githubusercontent.com/101283174/161477101-64e471f3-7c7b-4787-93e8-2309be76cbe8.gif)
+ 
+![Code Quiz (1)](https://user-images.githubusercontent.com/101283174/161477469-a5261d4c-db1c-4819-8a73-384ad11ea569.gif)
 
 
 ## Custom Features 📋
