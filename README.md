@@ -1,4 +1,5 @@
 # Code-Quiz🔥
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/siennameow/Code-Quiz/blob/main/LICENSE)
 
 ## Description 📝 
 
@@ -18,6 +19,7 @@ Want to test your knowledge of JavaScript? Give our free coding quiz a try!
 * [Usage 💡](#usage-)
 * [Skill-Improved 📚](#skill-improved-)
 * [Technologies 🔧](#technologies-)
+* [License 📜](#license-)
 * [Authors 👩](#authors-)
 * [Credits 🙌](#credits-)
 
@@ -132,6 +134,9 @@ When you answer question wrong, 10 seconds will be subtracted from the timer.
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+## License 📜
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/siennameow/Code-Quiz/blob/main/LICENSE)
 
 ## Authors 👩
 
