@@ -24,10 +24,8 @@ Want to test your knowledge of JavaScript? Give our free coding quiz a try!
 * [Credits 🙌](#credits-)
 
 ## Webpage Preview ⭐
- 
- 
-![Code Quiz (1)](https://user-images.githubusercontent.com/101283174/161477469-a5261d4c-db1c-4819-8a73-384ad11ea569.gif)
 
+![codequiz](https://user-images.githubusercontent.com/101283174/171315045-22e1d9ce-bed5-4659-92b2-51842311ea33.png)
 
 ## Custom Features 📋
 
